@@ -1,7 +1,5 @@
 .board-wrapper {
-    width: 1018px;
-    height: 608px;
-    background: grey;
+    
     display: flex;
     flex-wrap: wrap;
     row-gap: 4px;
@@ -9,11 +7,90 @@
     padding: 4px;
     justify-content: center;
     align-items: center;
+    border-radius: 2px;
 }
 
 .field {
     width: 98px;
     height: 98px;
     background: white;
-    border-radius: 3px;
+    border-radius: 2px;
+}
+
+.plain {
+    background: #ADC178;
+}
+
+.dog {
+    width: 98px;
+    height: 98px;
+    background: #A98467;
+    border-radius: 16px;
+}
+
+.cat {
+    width: 98px;
+    height: 98px;
+    background: #6C584C;
+    border-radius: 16px;
+}
+
+.bird {
+    width: 98px;
+    height: 98px;
+    background: #DDE5B6;
+    border-radius: 16px;
+}
+
+.empty {
+    width: 98px;
+    height: 98px;
+    background: transparent;
+    border-radius: 2px;
+}
+
+.field-board {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 4px;
+    column-gap: 4px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    width: 1016px;
+    height: 608px;
+}
+
+.unit-board {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 4px;
+    column-gap: 4px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    width: 1016px;
+    height: 608px;
+}
+
+.selected {
+    background: red;
+}
+
+/* units styling */
+
+.unit-name {
+    text-align: center;
+    font-size: 2em;
+    margin: 0;
+    padding: 0;
+}
+
+.unit-stats {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 15px;
+    padding: 0;
 }
