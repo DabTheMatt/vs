@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles.css';
+import * as React from "react";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+import HomePage from './Components/HomePage/HomePage';
+import Game from './Components/Game/Game';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      
+      <Routes>
+
+          <Route path="/vs/" element={<HomePage />} />
+          <Route path="/vs/game" element={<Game />} />
+          
+
+
+          <Route path="*" element={<NoMatch />} />
+
+      </Routes>
     </div>
   );
 }
 
-export default App;
+function NoMatch() {
+  return (
+    <div>
+      <h2>Ups! Nothing here - check url :)</h2>
+      <p>
+        <Link to="/">Go to the home page</Link>
+      </p>
+    </div>
+  );
+}

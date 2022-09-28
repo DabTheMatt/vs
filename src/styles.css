@@ -1,0 +1,19 @@
+.board-wrapper {
+    width: 1018px;
+    height: 608px;
+    background: grey;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 4px;
+    column-gap: 4px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.field {
+    width: 98px;
+    height: 98px;
+    background: white;
+    border-radius: 3px;
+}
