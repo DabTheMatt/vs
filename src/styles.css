@@ -25,14 +25,36 @@
     width: 98px;
     height: 98px;
     background: #A98467;
-    border-radius: 16px;
+    border-radius: 10px;
+}
+
+.field2 {
+    width: 112px;
+    height: 112px;
+    background: lightgrey;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board2 {
+    width: 500px;
+    display:flex;
+    flex-wrap: wrap;
+    row-gap: 4px;
+    column-gap: 4px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
 }
 
 .cat {
     width: 98px;
     height: 98px;
     background: #6C584C;
-    border-radius: 16px;
+    border-radius: 10px;
 }
 
 .bird {

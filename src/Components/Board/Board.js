@@ -62,7 +62,7 @@ export default function Board() {
             }
         })
         setUnits([...tempUnits]);
-        arrayMove(units, index, (index+1))
+       // arrayMove(units, index, (index+1))
         
         console.log('coord', e.clientX);
 
@@ -83,7 +83,7 @@ export default function Board() {
         let x = e.clientX;
         let y = e.clientY;
         console.log('coordinates x/y: ', x, ' ', y);
-
+        
     }
 
 
