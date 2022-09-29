@@ -44,8 +44,10 @@ export default function Board() {
     ])
 
     const [selectedStyle, setSelectedStyle] = useState('');
+    const [selectedCoordinatesX, setSelectedCoordinatesX] = useState(null);
+    const [selectedCoordinatesY, setSelectedCoordinatesY] = useState(null);
 
-    const select = (e, dogId) => {
+    const select = (e, dogId, index) => {
         let tempUnits = units;
         console.log('tempUnits', tempUnits);
         units.forEach((unit) => {
@@ -60,6 +62,28 @@ export default function Board() {
             }
         })
         setUnits([...tempUnits]);
+        arrayMove(units, index, (index+1))
+        
+        console.log('coord', e.clientX);
+
+        setSelectedCoordinatesX(e.clientX);
+        setSelectedCoordinatesY(e.clientY);
+    }
+
+    const arrayMove = (arr, fromIndex, toIndex) => {
+        let tempToMoove = units;
+        var element = tempToMoove[fromIndex];
+        arr.splice(fromIndex, 1);
+        arr.splice(toIndex, 0, element);
+        setUnits([...tempToMoove]);
+        console.log('aM units', arr, fromIndex, toIndex);
+    }
+
+    const takeCoordinates = (e) => {
+        let x = e.clientX;
+        let y = e.clientY;
+        console.log('coordinates x/y: ', x, ' ', y);
+
     }
 
 
@@ -68,8 +92,8 @@ export default function Board() {
     };
 
     return (
-      <div className="board-wrapper">
-        <div className="field-board">
+      <div className="board-wrapper" onClick={(e) => takeCoordinates(e)}>
+        <div className="field-board" >
             {board.map(function(field, key) {
                 return (
                     <Field fieldType={field} key="key" index={key} />
@@ -87,7 +111,8 @@ export default function Board() {
                         id={unit.id}
                         select={select}
                         selected={unit.selected}
-                        selectedStyle={selectedStyle}/>
+                        selectedStyle={selectedStyle}
+                        index={key}/>
                     )
                 } else if(unit === 'cat') {
                     return (
