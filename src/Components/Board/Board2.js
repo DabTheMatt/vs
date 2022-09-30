@@ -1,5 +1,5 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback, useReducer } from "react";
 import Field from "../Field/Field";
 import Dog from "../Dog/Dog";
 import Cat from "../Cat/Cat";
@@ -8,6 +8,8 @@ import Empty from "../Empty/Empty";
 import Unit from "../Unit/Unit";
 
 export default function Board2() {
+
+  
 
     const [board, setBoard] = useState([
         {type: 'plain', id: 1, color: 'red'},
@@ -40,6 +42,16 @@ export default function Board2() {
     const [selectedCoordinatesY, setSelectedCoordinatesY] = useState(null);
     const [unitSelect, setUnitSelect] = useState('');
     const [newPosition, setNewPosition] = useState(null);
+    const [counter, setCounter] = useState(1);
+
+    const [rerender, setRerender] = useState(false);
+    const [over, setOver] = useState(null);
+
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+
+    const handleMouseOver = () => {
+        setOver('over');
+    }
 
     const handleUnitClick = (e, position, id) => {
         console.log('unit position', position);
@@ -60,27 +72,31 @@ export default function Board2() {
         console.log('units after', units);
     }
 
+
     const handleNewPosition = (e, id) => {
         e.preventDefault();
         console.log('field position', id);
-        setNewPosition(id);
-        let tempUnits = units;
+        
+       
+            setNewPosition(id);
+            forceUpdate();
+            let tempUnits = units;
         tempUnits.forEach((unit) => {
             if(unit.selected === 'selected') {
                 unit.position = newPosition;
-            } else if (unit.selected === '') {
-                return
             }
-            
-        })
+        }, [newPosition])
         setUnits([...tempUnits]);
+       //setNewPosition(null);
+
+        
     }
   
     return (
       <div className="board2" >
             {board.map((el, index)=>{
                 return(
-                    <div onClick={(e) => handleNewPosition(e, el.id)} className='field2' key={el.id} id={el.id}>
+                    <div onMouseOver={handleMouseOver} onContextMenu={(e) => handleNewPosition(e, el.id)} className={`field2 ${over}`} key={el.id} id={el.id}>
                         {units.map((unit, index)=>{
                             if(unit.position === el.id)
                             return(
