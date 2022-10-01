@@ -6,35 +6,36 @@ import Cat from "../Cat/Cat";
 import Bird from "../Bird/Bird";
 import Empty from "../Empty/Empty";
 import Unit from "../Unit/Unit";
+import React from "react";
 
 export default function Board2() {
 
   
 
     const [board, setBoard] = useState([
-        {type: 'plain', id: 1, color: 'red'},
-        {type: 'plain', id: 2, color: 'red'},
-        {type: 'plain', id: 3, color: 'red'},
-        {type: 'plain', id: 4, color: 'red'},
-        {type: 'plain', id: 5, color: 'red'},
-        {type: 'plain', id: 6, color: 'red'},
-        {type: 'plain', id: 7, color: 'red'},
-        {type: 'plain', id: 8, color: 'red'},
-        {type: 'plain', id: 9, color: 'red'},
-        {type: 'plain', id: 10, color: 'red'},
-        {type: 'plain', id: 11, color: 'red'},
-        {type: 'plain', id: 12, color: 'red'},
-        {type: 'plain', id: 13, color: 'red'},
-        {type: 'plain', id: 14, color: 'red'},
-        {type: 'plain', id: 15, color: 'red'},
-        {type: 'plain', id: 16, color: 'red'},
+        {type: 'plain', id: 1, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 2, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 3, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 4, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 5, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 6, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 7, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 8, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 9, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 10, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 11, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 12, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 13, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 14, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 15, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 16, color: 'red', mouseOver: '', transparency: ''},
     ]);
 
     const [units, setUnits] = useState([
-        {selected: '', type: 'unit', id: 1, animal: 'cat', position: 3, attack: 3, defense: 6},
-        {selected: '', type: 'unit', id: 2, animal: 'dog', position: 7, attack: 4, defense: 5},
-        {selected: '', type: 'unit', id: 3, animal: 'cat', position: 2, attack: 3, defense: 6},
-        {selected: '', type: 'unit', id: 4, animal: 'dog', position: 8, attack: 4, defense: 5},
+        {selected: '', type: 'unit', id: 1, animal: 'cat', position: 3, attack: 3, defense: 6, fighting: ''},
+        {selected: '', type: 'unit', id: 2, animal: 'dog', position: 7, attack: 4, defense: 5, fighting: ''},
+        {selected: '', type: 'unit', id: 3, animal: 'cat', position: 2, attack: 3, defense: 6, fighting: ''},
+        {selected: '', type: 'unit', id: 4, animal: 'dog', position: 8, attack: 4, defense: 5, fighting: ''},
     ])
 
    
@@ -43,15 +44,40 @@ export default function Board2() {
     const [unitSelect, setUnitSelect] = useState('');
     const [newPosition, setNewPosition] = useState(null);
     const [counter, setCounter] = useState(1);
+    const [tempPosition, setTempPosition] = useState(null);
 
     const [rerender, setRerender] = useState(false);
     const [over, setOver] = useState(null);
 
-    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+    const [fightStyle, setFightStyle] = useState('');
+    const [transparent, setTransparent] = useState('');
 
-    const handleMouseOver = () => {
-        setOver('over');
+ 
+    
+
+    const handleMouseOver = (e, index) => {
+        console.log('index', index);
+        let tempBoard = board;
+        tempBoard.forEach((div) => {
+            if(div.id === index) {
+                div.selected = 'over';
+            }
+            setBoard([...tempBoard]);
+        })
     }
+    const handleMouseOut = (e, index) => {
+        console.log('index', index);
+        let tempBoard = board;
+        tempBoard.forEach((div) => {
+            if(div.id === index) {
+                div.selected = '';
+            }
+            setBoard([...tempBoard]);
+        })
+    }
+
+    const [, updateState] = React.useState();
+    const forceUpdate = React.useCallback(() => updateState({}), []);
 
     const handleUnitClick = (e, position, id) => {
         console.log('unit position', position);
@@ -61,6 +87,7 @@ export default function Board2() {
             if(unit.id === id) {
                 if(unit.selected === '') {
                     unit.selected = 'selected';
+                    
                 } else {
                     unit.selected = '';
                 }
@@ -72,31 +99,77 @@ export default function Board2() {
         console.log('units after', units);
     }
 
+    useEffect(() => {
+        console.log('zuza');
+    }, [units])
+
+
 
     const handleNewPosition = (e, id) => {
         e.preventDefault();
-        console.log('field position', id);
-        
-       
             setNewPosition(id);
-            forceUpdate();
             let tempUnits = units;
         tempUnits.forEach((unit) => {
+            
             if(unit.selected === 'selected') {
-                unit.position = newPosition;
+                unit.position = id;
             }
-        }, [newPosition])
+
+        })
+        console.log('out if');
         setUnits([...tempUnits]);
        //setNewPosition(null);
-
+        fight(id);
         
     }
+
+    const fight = (id) => {
+        setFightStyle('fightStyle')
+        console.log('figt', units);
+        let tempBoard = board;
+        tempBoard.map((field) => {
+            if (field.id !== id) {
+                field.transparency = 'transparent';
+            } else if (field.id === id) {
+                field.type = 'white';
+            }
+        })
+        let tempUnits = units.filter(unit => unit.position === id);
+        tempUnits.forEach((unit) => {
+            unit.fighting = 'fighting'
+        })
+        tempUnits.forEach((unit) => {
+            if(unit.selected === 'selected') {
+                unit.selected = '';
+            }
+        })
+        console.log('fight array', tempUnits);
+        const myTimeout = setTimeout(closeFight, 5000);
+
+        function closeFight() {
+            tempBoard.map((field) => {
+                if (field.id !== id) {
+                    field.transparency = '';
+                } else if (field.id === id) {
+                    field.type = 'plain';
+                }
+                 let tempUnits = units.filter(unit => unit.position === id);
+        tempUnits.forEach((unit) => {
+            unit.fighting = 'fighting'
+        })
+            })
+
+           
+        
+        }
+    }
   
-    return (
+    return (<div>
+        <div className={`fightMask ${fightStyle}`}></div>
       <div className="board2" >
             {board.map((el, index)=>{
                 return(
-                    <div onMouseOver={handleMouseOver} onContextMenu={(e) => handleNewPosition(e, el.id)} className={`field2 ${over}`} key={el.id} id={el.id}>
+                    <div onMouseOver={(e) => handleMouseOver(e, el.id)} onMouseOut={(e) => handleMouseOut(e, el.id)} onContextMenu={(e) => handleNewPosition(e, el.id)} className={`field2 ${el.selected} ${el.transparency} ${el.type}`} key={el.id} id={el.id}>
                         {units.map((unit, index)=>{
                             if(unit.position === el.id)
                             return(
@@ -109,12 +182,14 @@ export default function Board2() {
                                         position={unit.position}
                                         selected={unit.selected}
                                         handleClick={handleUnitClick}
+                                        fighting={unit.fighting}
                                 /></div>
                             )
                         })}
                     </div>
                 )
             })}
+      </div>
       </div>
     );
   }
