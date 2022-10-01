@@ -169,3 +169,12 @@
     pointer-events: none;
     position: absolute;
 }
+
+.dying {
+    animation: dying 3s ease-in-out 1;
+}
+
+@keyframes dying {
+    0% {opacity: 1; background: #9B2226;}
+    100% {opacity: 0; background: black; transform: scale(0.1);}
+  }

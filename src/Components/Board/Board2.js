@@ -13,29 +13,29 @@ export default function Board2() {
   
 
     const [board, setBoard] = useState([
-        {type: 'plain', id: 1, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 2, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 3, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 4, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 5, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 6, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 7, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 8, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 9, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 10, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 11, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 12, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 13, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 14, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 15, color: 'red', mouseOver: '', transparency: ''},
-        {type: 'plain', id: 16, color: 'red', mouseOver: '', transparency: ''},
+        {type: 'plain', id: 1, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 2, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 3, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 4, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 5, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 6, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 7, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 8, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 9, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 10, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 11, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 12, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 13, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 14, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 15, color: 'red', mouseOver: '', transparency: '', selected: ''},
+        {type: 'plain', id: 16, color: 'red', mouseOver: '', transparency: '', selected: ''},
     ]);
 
     const [units, setUnits] = useState([
-        {selected: '', type: 'unit', id: 1, animal: 'cat', position: 3, attack: 3, defense: 6, fighting: ''},
-        {selected: '', type: 'unit', id: 2, animal: 'dog', position: 7, attack: 4, defense: 5, fighting: ''},
-        {selected: '', type: 'unit', id: 3, animal: 'cat', position: 2, attack: 3, defense: 6, fighting: ''},
-        {selected: '', type: 'unit', id: 4, animal: 'dog', position: 8, attack: 4, defense: 5, fighting: ''},
+        {selected: '', type: 'unit', id: 1, animal: 'cat', position: 3, attack: 3, defense: 6, fighting: '', destroyed: false, dying: ''},
+        {selected: '', type: 'unit', id: 2, animal: 'dog', position: 7, attack: 4, defense: 5, fighting: '', destroyed: false, dying: ''},
+        {selected: '', type: 'unit', id: 3, animal: 'cat', position: 2, attack: 3, defense: 6, fighting: '', destroyed: false, dying: ''},
+        {selected: '', type: 'unit', id: 4, animal: 'dog', position: 8, attack: 4, defense: 5, fighting: '', destroyed: false, dying: ''},
     ])
 
    
@@ -60,8 +60,17 @@ export default function Board2() {
         let tempBoard = board;
         tempBoard.forEach((div) => {
             if(div.id === index) {
+                if(tempBoard[index-2]){
+                    tempBoard[index-2].selected = 'over';
+                    }
                 div.selected = 'over';
+                tempBoard[div.id].selected = 'over';
+                tempBoard[div.id+2].selected = 'over';
+                tempBoard[div.id+3].selected = 'over';
+                tempBoard[div.id+4].selected = 'over';
+
             }
+            
             setBoard([...tempBoard]);
         })
     }
@@ -70,7 +79,15 @@ export default function Board2() {
         let tempBoard = board;
         tempBoard.forEach((div) => {
             if(div.id === index) {
+                if(tempBoard[index-2]){
+                tempBoard[index-2].selected = '';
+                }
                 div.selected = '';
+                tempBoard[index].selected = '';
+                tempBoard[index+2].selected = '';
+                tempBoard[index+3].selected = '';
+                tempBoard[index+4].selected = '';
+                
             }
             setBoard([...tempBoard]);
         })
@@ -82,7 +99,7 @@ export default function Board2() {
     const handleUnitClick = (e, position, id) => {
         console.log('unit position', position);
         
-        let tempUnits = units;
+       let tempUnits = units;
         tempUnits.forEach((unit) => {
             if(unit.id === id) {
                 if(unit.selected === '') {
@@ -98,10 +115,6 @@ export default function Board2() {
         setUnits([...tempUnits]);
         console.log('units after', units);
     }
-
-    useEffect(() => {
-        console.log('zuza');
-    }, [units])
 
 
 
@@ -124,8 +137,18 @@ export default function Board2() {
     }
 
     const fight = (id) => {
+       
+
+        console.log('units1', units);
+
+        let fightingUnits = units.filter(unit => unit.position === id);
+        fightingUnits.forEach((unit) => {
+            unit.fighting = 'fighting';
+        })
+
         setFightStyle('fightStyle')
         console.log('figt', units);
+
         let tempBoard = board;
         tempBoard.map((field) => {
             if (field.id !== id) {
@@ -134,17 +157,45 @@ export default function Board2() {
                 field.type = 'white';
             }
         })
-        let tempUnits = units.filter(unit => unit.position === id);
+
+        let sorted = fightingUnits.sort((a, b) => parseFloat(a.attack) - parseFloat(b.attack));
+        let looserId = sorted[0].id;
+
+        console.log('looser', looserId);
+
+        let tempUnits = units;
+
         tempUnits.forEach((unit) => {
-            unit.fighting = 'fighting'
+            if (unit.id === looserId) {
+                unit.dying = 'dying';
+            }
         })
+        console.log('minus looser', tempUnits[1].id);
+
+        const dyingTimeout = setTimeout(destroyUnit, 2000);
+
+        function destroyUnit(){
+            let tempUnits = units;
+
         tempUnits.forEach((unit) => {
+            if (unit.id === looserId) {
+                unit.destroyed = 'destroyed';
+            }
+        })
+
+        setUnits([...tempUnits]);
+        }
+
+        fightingUnits.forEach((unit) => {
             if(unit.selected === 'selected') {
                 unit.selected = '';
             }
+                setUnits([...tempUnits]);
+                console.log('units2', units);
+                setBoard([...tempBoard]);
+
         })
-        console.log('fight array', tempUnits);
-        const myTimeout = setTimeout(closeFight, 5000);
+        const myTimeout = setTimeout(closeFight, 2000);
 
         function closeFight() {
             tempBoard.map((field) => {
@@ -153,14 +204,15 @@ export default function Board2() {
                 } else if (field.id === id) {
                     field.type = 'plain';
                 }
-                 let tempUnits = units.filter(unit => unit.position === id);
-        tempUnits.forEach((unit) => {
-            unit.fighting = 'fighting'
-        })
             })
 
-           
+            let tempUnits = units.filter(unit => unit.position === id);
+        tempUnits.forEach((unit) => {
+            unit.fighting = ''
+        })
         
+            // setBoard(board);
+            // setUnits(tempUnits);
         }
     }
   
@@ -171,7 +223,7 @@ export default function Board2() {
                 return(
                     <div onMouseOver={(e) => handleMouseOver(e, el.id)} onMouseOut={(e) => handleMouseOut(e, el.id)} onContextMenu={(e) => handleNewPosition(e, el.id)} className={`field2 ${el.selected} ${el.transparency} ${el.type}`} key={el.id} id={el.id}>
                         {units.map((unit, index)=>{
-                            if(unit.position === el.id)
+                            if(unit.position === el.id && !unit.destroyed)
                             return(
                                 <div key={unit.id}>
                                     <Unit 
@@ -183,6 +235,7 @@ export default function Board2() {
                                         selected={unit.selected}
                                         handleClick={handleUnitClick}
                                         fighting={unit.fighting}
+                                        dying={unit.dying}
                                 /></div>
                             )
                         })}
