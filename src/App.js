@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles3.css';
 import * as React from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import HomePage from './Components/HomePage/HomePage';

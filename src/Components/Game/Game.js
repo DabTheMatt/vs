@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Board from "../Board/Board";
-import Board2 from "../Board/Board2";
+import Board3 from "../Board/Board3";
 
 
 export default function Game() {
@@ -12,7 +12,7 @@ export default function Game() {
       <div>
         <h1>Game</h1>
 
-            <Board2 />
+            <Board3 />
 
         <div>
             <Link to="/vs">Home Page</Link>
