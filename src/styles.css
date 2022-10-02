@@ -115,9 +115,23 @@
 
 .over {
     transition: all 0.1s;
-    
     border: 3px dashed black;
 }
+
+.over-cat {
+    transition: all 0.1s;
+    border: 3px dashed #CA6702;
+}
+
+.over-dog {
+    transition: all 0.1s;
+    border: 3px dashed #005F73;
+}
+
+
+
+
+
 
 @keyframes selectedBorder {
     0% {border: 4px solid rgba(255, 255, 255, .2);}

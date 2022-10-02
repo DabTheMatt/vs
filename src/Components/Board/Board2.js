@@ -51,23 +51,225 @@ export default function Board2() {
 
     const [fightStyle, setFightStyle] = useState('');
     const [transparent, setTransparent] = useState('');
-
+    
+    const [dogsColor, setDogsColor] = useState('#005F73');
+    const [catsColor, setCatsColor] = useState('#CA6702');
  
     
 
     const handleMouseOver = (e, index) => {
         console.log('index', index);
         let tempBoard = board;
+        let row = 4;
+        let column = 4;
+
+        let arrayOfUnitsId = units.map((unit) => {
+            return (
+                unit.position
+            )
+        })
+        console.log('unit ids', arrayOfUnitsId);
         tempBoard.forEach((div) => {
-            if(div.id === index) {
+
+            if(div.id === index && arrayOfUnitsId.includes(div.id)) {
+
+                if(index === 1) {
+                    div.selected = 'over';
+                if(tempBoard[index]){
+                    tempBoard[index].selected = 'over';
+                    }
+                // if(tempBoard[index+2]){
+                //     tempBoard[index+2].selected = 'over';
+                //     }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = 'over';
+                    }
+                if(tempBoard[index+4]){
+                    tempBoard[index+4].selected = 'over';
+                    }
+                } else if (index === 4) {
+                    if(tempBoard[index-2]){
+                        tempBoard[index-2].selected = 'over';
+                        }
+                    if(tempBoard[index-5]){
+                        tempBoard[index-5].selected = 'over';
+                        }
+                    div.selected = 'over';
+                if(tempBoard[index+2]){
+                    tempBoard[index+2].selected = 'over';
+                    }
+                // if(tempBoard[index+2]){
+                //     tempBoard[index+2].selected = 'over';
+                //     }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = 'over';
+                    }
+                
+                }
+                
+                
+                else if (index === 5) {
+                    if(tempBoard[index-4]){
+                        tempBoard[index-4].selected = 'over';
+                        }
+                    if(tempBoard[index-5]){
+                        tempBoard[index-5].selected = 'over';
+                        }
+                    div.selected = 'over';
+                if(tempBoard[index]){
+                    tempBoard[index].selected = 'over';
+                    }
+                // if(tempBoard[index+2]){
+                //     tempBoard[index+2].selected = 'over';
+                //     }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = 'over';
+                    }
+                if(tempBoard[index+4]){
+                    tempBoard[index+4].selected = 'over';
+                    }
+                } else if (index === 8) {
+                    if(tempBoard[index-2]){
+                        tempBoard[index-2].selected = 'over';
+                        }
+                    if(tempBoard[index-6]){
+                        tempBoard[index-6].selected = 'over';
+                        }
+                    if(tempBoard[index-5]){
+                        tempBoard[index-5].selected = 'over';
+                        }
+                    div.selected = 'over';
+                if(tempBoard[index+2]){
+                    tempBoard[index+2].selected = 'over';
+                    }
+                // if(tempBoard[index+2]){
+                //     tempBoard[index+2].selected = 'over';
+                //     }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = 'over';
+                    }
+                
+                }
+                
+                
+                else if (index === 9) {
+                    if(tempBoard[index-4]){
+                        tempBoard[index-4].selected = 'over';
+                        }
+                    if(tempBoard[index-5]){
+                        tempBoard[index-5].selected = 'over';
+                        }
+                    div.selected = 'over';
+                if(tempBoard[index]){
+                    tempBoard[index].selected = 'over';
+                    }
+                // if(tempBoard[index+2]){
+                //     tempBoard[index+2].selected = 'over';
+                //     }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = 'over';
+                    }
+                if(tempBoard[index+4]){
+                    tempBoard[index+4].selected = 'over';
+                    }
+                }   else if (index === 12) {
+                    if(tempBoard[index-2]){
+                        tempBoard[index-2].selected = 'over';
+                        }
+                    if(tempBoard[index-6]){
+                        tempBoard[index-6].selected = 'over';
+                        }
+                    if(tempBoard[index-5]){
+                        tempBoard[index-5].selected = 'over';
+                        }
+                    div.selected = 'over';
+                if(tempBoard[index+2]){
+                    tempBoard[index+2].selected = 'over';
+                    }
+                // if(tempBoard[index+2]){
+                //     tempBoard[index+2].selected = 'over';
+                //     }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = 'over';
+                    }
+                
+                }
+
+                else if (index === 13) {
+                    if(tempBoard[index-4]){
+                        tempBoard[index-4].selected = 'over';
+                        }
+                    if(tempBoard[index-5]){
+                        tempBoard[index-5].selected = 'over';
+                        }
+                    div.selected = 'over';
+                if(tempBoard[index]){
+                    tempBoard[index].selected = 'over';
+                    }
+                // if(tempBoard[index+2]){
+                //     tempBoard[index+2].selected = 'over';
+                //     }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = 'over';
+                    }
+                if(tempBoard[index+4]){
+                    tempBoard[index+4].selected = 'over';
+                    }
+                } else if (index === 16) {
+                    if(tempBoard[index-2]){
+                        tempBoard[index-2].selected = 'over';
+                        }
+                    if(tempBoard[index-6]){
+                        tempBoard[index-6].selected = 'over';
+                        }
+                    if(tempBoard[index-5]){
+                        tempBoard[index-5].selected = 'over';
+                        }
+                    div.selected = 'over';
+                    if(tempBoard[index]){
+                        tempBoard[index].selected = 'over';
+                        }
+                if(tempBoard[index+2]){
+                    tempBoard[index+2].selected = 'over';
+                    }
+                // if(tempBoard[index+2]){
+                //     tempBoard[index+2].selected = 'over';
+                //     }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = 'over';
+                    }
+                
+                }
+                
+                
+                else  {
+                    console.log('e', e.target.className);
                 if(tempBoard[index-2]){
                     tempBoard[index-2].selected = 'over';
                     }
+                if(tempBoard[index-4]){
+                    tempBoard[index-4].selected = 'over';
+                    }
+                if(tempBoard[index-5]){
+                    tempBoard[index-5].selected = 'over';
+                    }
+                if(tempBoard[index-6]){
+                    tempBoard[index-6].selected = 'over';
+                    }
                 div.selected = 'over';
-                tempBoard[div.id].selected = 'over';
-                tempBoard[div.id+2].selected = 'over';
-                tempBoard[div.id+3].selected = 'over';
-                tempBoard[div.id+4].selected = 'over';
+                if(tempBoard[index]){
+                    tempBoard[index].selected = 'over';
+                    }
+                if(tempBoard[index+2]){
+                    tempBoard[index+2].selected = 'over';
+                    }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = 'over';
+                    }
+                if(tempBoard[index+4]){
+                    tempBoard[index+4].selected = 'over';
+                    }
+                }
 
             }
             
@@ -80,13 +282,31 @@ export default function Board2() {
         tempBoard.forEach((div) => {
             if(div.id === index) {
                 if(tempBoard[index-2]){
-                tempBoard[index-2].selected = '';
-                }
+                    tempBoard[index-2].selected = '';
+                    }
+                if(tempBoard[index-4]){
+                    tempBoard[index-4].selected = '';
+                    }
+                if(tempBoard[index-5]){
+                    tempBoard[index-5].selected = '';
+                    }
+                if(tempBoard[index-6]){
+                    tempBoard[index-6].selected = '';
+                    }
                 div.selected = '';
-                tempBoard[index].selected = '';
-                tempBoard[index+2].selected = '';
-                tempBoard[index+3].selected = '';
-                tempBoard[index+4].selected = '';
+                if(tempBoard[index]){
+                    tempBoard[index].selected = '';
+                    }
+                if(tempBoard[index+2]){
+                    tempBoard[index+2].selected = '';
+                    }
+                if(tempBoard[index+3]){
+                    tempBoard[index+3].selected = '';
+                    }
+                if(tempBoard[index+4]){
+                    tempBoard[index+4].selected = '';
+                    }
+                
                 
             }
             setBoard([...tempBoard]);
