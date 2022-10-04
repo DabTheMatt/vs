@@ -1,7 +1,7 @@
 export default function Unit2(props) {
 
 	return (
-		<div className={`unit ${props.type} unit-text-color`}>
+		<div className={`unit ${props.name} unit-text-color`}>
 			<p className="unit-title">{props.type}</p>
 			<p className="unit-attributes">{props.moovement} / {props.attack} / {props.defense}</p>
 			<div className="lifes-squeres-wrapper">

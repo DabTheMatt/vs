@@ -11,76 +11,103 @@ export default function Board3() {
 	}
 
 	const [fieldBoard, setFieldBoard] = useState([
-		{id: 1, type: 'plain', mouseOverField: false},
-		{id: 2, type: 'plain', mouseOverField: false},
-		{id: 3, type: 'plain', mouseOverField: false},
-		{id: 4, type: 'river', mouseOverField: false},
-		{id: 5, type: 'plain', mouseOverField: false},
-		{id: 6, type: 'woods', mouseOverField: false},
-		{id: 7, type: 'plain', mouseOverField: false},
-		{id: 8, type: 'plain', mouseOverField: false},
-		{id: 9, type: 'plain', mouseOverField: false},
-		{id: 10, type: 'plain', mouseOverField: false},
-		{id: 11, type: 'woods', mouseOverField: false},
-		{id: 12, type: 'river', mouseOverField: false},
-		{id: 13, type: 'plain', mouseOverField: false},
-		{id: 14, type: 'plain', mouseOverField: false},
-		{id: 15, type: 'plain', mouseOverField: false},
-		{id: 16, type: 'plain', mouseOverField: false},
-		{id: 17, type: 'plain', mouseOverField: false},
-		{id: 18, type: 'plain', mouseOverField: false},
-		{id: 19, type: 'plain', mouseOverField: false},
-		{id: 20, type: 'river', mouseOverField: false},
-		{id: 21, type: 'river', mouseOverField: false},
-		{id: 22, type: 'plain', mouseOverField: false},
-		{id: 23, type: 'plain', mouseOverField: false},
-		{id: 24, type: 'plain', mouseOverField: false},
-		{id: 25, type: 'plain', mouseOverField: false},
-		{id: 26, type: 'woods', mouseOverField: false},
-		{id: 27, type: 'plain', mouseOverField: false},
-		{id: 28, type: 'plain', mouseOverField: false},
-		{id: 29, type: 'river', mouseOverField: false},
-		{id: 30, type: 'plain', mouseOverField: false},
-		{id: 31, type: 'woods', mouseOverField: false},
-		{id: 32, type: 'plain', mouseOverField: false},
-		{id: 33, type: 'plain', mouseOverField: false},
-		{id: 34, type: 'plain', mouseOverField: false},
-		{id: 35, type: 'plain', mouseOverField: false},
-		{id: 36, type: 'plain', mouseOverField: false},
-		{id: 37, type: 'river', mouseOverField: false},
-		{id: 38, type: 'plain', mouseOverField: false},
-		{id: 39, type: 'plain', mouseOverField: false},
-		{id: 40, type: 'plain', mouseOverField: false},
+		{id: 1, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 2, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 3, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 4, category: 'map', type: 'river', mouseOverField: false},
+		{id: 5, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 6, category: 'map', type: 'woods', mouseOverField: false},
+		{id: 7, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 8, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 9, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 10, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 11, category: 'map', type: 'woods', mouseOverField: false},
+		{id: 12, category: 'map', type: 'river', mouseOverField: false},
+		{id: 13, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 14, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 15, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 16, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 17, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 18, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 19, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 20, category: 'map', type: 'river', mouseOverField: false},
+		{id: 21, category: 'map', type: 'river', mouseOverField: false},
+		{id: 22, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 23, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 24, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 25, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 26, category: 'map', type: 'woods', mouseOverField: false},
+		{id: 27, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 28, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 29, category: 'map', type: 'river', mouseOverField: false},
+		{id: 30, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 31, category: 'map', type: 'woods', mouseOverField: false},
+		{id: 32, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 33, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 34, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 35, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 36, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 37, category: 'map', type: 'river', mouseOverField: false},
+		{id: 38, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 39, category: 'map', type: 'plain', mouseOverField: false},
+		{id: 40, category: 'map',type: 'plain', mouseOverField: false},
 	]);
 
 	const [units, setUnits] = useState([
-		{id: 1, type: 'turtle', position: 10, selected: false, moovement: 1, attackRange: 1, attack: 1, defense: 5, lifes: 3},
-		{id: 2, type: 'dog', position: 17, selected: false, moovement: 2, attackRange: 1, attack: 3, defense: 3, lifes: 2},
-		{id: 3, type: 'cat', position: 24, selected: false, moovement: 3, attackRange: 1, attack: 2, defense: 3, lifes: 3},
-		{id: 4, type: 'bird', position: 13, selected: false, moovement: 4, attackRange: 2, attack: 2, defense: 2, lifes: 1},
+		{uId: 101, category: 'unit', name: 'turtle', position: 10, selected: false, moovement: 1, attackRange: 1, attack: 1, defense: 5, lifes: 3, standingOn: ''},
+		{uId: 102, category: 'unit', name: 'dog', position: 18, selected: false, moovement: 2, attackRange: 1, attack: 3, defense: 3, lifes: 2, standingOn: ''},
+		{uId: 103, category: 'unit', name: 'cat', position: 24, selected: false, moovement: 3, attackRange: 1, attack: 2, defense: 3, lifes: 3, standingOn: ''},
+		{uId: 104, category: 'unit', name: 'bird', position: 13, selected: false, moovement: 4, attackRange: 2, attack: 2, defense: 2, lifes: 1, standingOn: ''},
 	])
+
+	const [playBoard, setPlayBoard] = useState([]);
+
+	useEffect(() => {
+		let tempBoard = fieldBoard;
+		let newBoard = units;
+
+		newBoard.forEach((unit) => {
+			let unitField = tempBoard.map((field) => {
+				if(field.id === unit.position){
+					tempBoard[field.id] = unit;
+					unit.standingOn = field.type;
+				}
+		})
+		setPlayBoard([...tempBoard]);
+		})
+	}, [])
+
+	const handleMaouseOver = (id) => {
+		console.log('a', id);
+	}
 
 	return (
 	<div className="field-board-wrapper">
-		{fieldBoard.map((field) => {
+		{playBoard.map((field) => {
 			return(
-				<div className={`field ${field.type}`}>
-					{units.map((unit) => {
-						if(field.id === unit.position){
-							return(
-							<Unit2
-								type={unit.type}
-								position={unit.position}
-								moovement={unit.moovement}
-								attack={unit.attack}
-								defense={unit.defense}
-								lifes={unit.lifes}
-							/>
-						)
-						}
-						
-					})}
+				(field.category === 'map') ? 
+				(<div key={field.id} className={`field ${field.type}`}>
+				</div>) :
+				<div key={field.uId} className={`field ${field.standingOn} unit-text-color`}  style={{border: `6px solid ${field.standingOn}`}} >
+					<Unit2 
+						name={field.name}
+						attack={field.attack}
+					/>	
 				</div>
+				
+					// (<div onMouseOver={() => handleMaouseOver(field.uId)} key={field.uId} className={`field ${field.standingOn}`}>
+					// <div className={`unit ${field.name} unit-text-color`}>
+					// 	<p className="unit-title">{field.name}</p>
+					// 	<p className="unit-attributes">{field.moovement} / {field.attack} / {field.defense}</p>
+					// 	<div className="lifes-squeres-wrapper">
+					// 		{Array.from(Array(field.lifes).keys()).map((life) => {
+					// 			return <div className="life-squere"></div>
+					// 		})}
+					// 	</div>
+					// </div>
+					// </div> )
+					
+				
 				)
 			})}
 			
