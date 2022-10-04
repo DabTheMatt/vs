@@ -6,8 +6,9 @@
     margin: 0 auto;
 }
 
+/* Board */
+
 .board-wrapper {
-    
     display: flex;
     flex-wrap: wrap;
     row-gap: 4px;
@@ -17,55 +18,121 @@
     align-items: center;
     border-radius: 2px;
 }
+
+.board2 {
+    width: 1028px;
+    height: auto;
+    display:flex;
+    flex-wrap: wrap;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+}
+
+/* Fields */
 
 .field {
     width: 98px;
     height: 98px;
-    background: white;
     border-radius: 2px;
 }
 
-.plain {
-    background: #ADC178;
-}
-
-.dog {
-    width: 98px;
-    height: 98px;
-    background: #005F73;
-    border-radius: 10px;
+.field-id {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 300;
     color: white;
 }
 
+.plain {
+    background: #a7c957;
+}
+
+.woods {
+    background: #6A994E;
+}
+
+.river {
+    background: #006D77;
+}
+
+
+
 .field2 {
-    width: 112px;
-    height: 112px;
-    background: #E9D8A6;
-    border-radius: 14px;
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 20;
+    margin: 0.5px;
 }
 
-.board2 {
-    width: 500px;
-    display:flex;
-    flex-wrap: wrap;
-    row-gap: 4px;
-    column-gap: 4px;
-    padding: 4px;
+.underfield {
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 2px;
+    z-index: 20;
+    margin: 0.5px;
+}
+
+
+
+.unit {
+    width: 84px;
+    height: 84px;
+    border-radius: 4px;
+    color: white; 
+    position: relative;
+    z-index: 500;
+    border-bottom: 3px solid white;
+    border-right: 3px solid whitesmoke;
+}
+
+.unit-name {
+    font-size: 1.2em;
+    padding: 4px 6px;
+    text-transform: uppercase;
+}
+
+.unit-name::first-letter {
+    font-size: 1.3em;
+}
+
+.unit-stats {
+    text-align: center;
+    font-size: 1.2em;
+    padding: 0px 6px;
+    position: relative;
+    top: 12px;
+}
+
+.counter-moovement {
+    text-decoration: underline;
+}
+
+.counter-attack {
+    font-size: 1.21em;
 }
 
 .cat {
-    width: 98px;
-    height: 98px;
-    background: #CA6702;
-    border-radius: 10px;
-    color: white;
+    background: #6D597A;
+}
+
+.dog {
+    background: #355070;
+}
+
+.selected {
+    opacity: 1;
+    position: relative;
+    border: 3px dashed white;
+    box-sizing: content-box;
 }
 
 .bird {
@@ -108,10 +175,6 @@
     height: 608px;
 }
 
-.selected {
-    border: 4px solid #9B2226;
-    box-sizing: content-box;
-}
 
 .over {
     transition: all 0.1s;
@@ -141,19 +204,7 @@
 
 /* units styling */
 
-.unit-name {
-    text-align: center;
-    font-size: 2em;
-    margin: 0;
-    padding: 0;
-}
 
-.unit-stats {
-    text-align: center;
-    font-size: 1.5em;
-    margin: 15px;
-    padding: 0;
-}
 
 .fightStyle {
     
