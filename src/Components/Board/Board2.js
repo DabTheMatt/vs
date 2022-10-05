@@ -353,23 +353,21 @@ export default function Board2() {
     const forceUpdate = React.useCallback(() => updateState({}), []);
 
     const handleFieldClick = (e, id) => {
-        console.log('eeerere', id)
-        let tempUnits = units;
-        tempUnits.forEach((unit) => {
-            if(unit.id !== id) {
-                console.log('ffff')
-                if(unit.selected === 'selected') {
-                unit.selected = ''
-                }
+        console.log('eeerere', e.target)
+        let tempBoard = board;
+        tempBoard.forEach((field) => {
+            if(field.id === id){
+                console.log('firld.selected', field.selected)
+                field.selected = 'field-selected';
+            } else {
+                field.selected = '';
             }
         })
-        // setUnits([...tempUnits]);
+        setBoard([...tempBoard]);
     }
     
     const handleUnitClick = (e, position, id) => {
         console.log('unit position', position);
-
-        
         
        let tempUnits = units;
         tempUnits.forEach((unit) => {
@@ -385,8 +383,7 @@ export default function Board2() {
             }
         })
         setUnits([...tempUnits]);
-
-        console.log('units after', units);
+        
     }
 
 
@@ -496,7 +493,7 @@ export default function Board2() {
             {board.map((el, index)=>{
                 return(
                     <div 
-                    // onClick={(e) => handleFieldClick(e, el.id)}
+                    onClick={(e) => handleFieldClick(e, el.id)}
                     // onClick={(e) => handleMouseOver(e, el.id)}
                     // onMouseOut={(e) => handleMouseOut(e, el.id)} 
                      onContextMenu={(e) => handleNewPosition(e, el.id)} className={`field2 ${el.selected} ${el.transparency} ${el.type}`} key={el.id} id={el.id}><span className="field-id">{el.id}</span>
